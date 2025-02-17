@@ -10,9 +10,11 @@ import tkinter as tk
 from tkinter import filedialog 
 import torch 
 from transformers import pipeline 
-# from docx import Document
 import zipfile
 import olefile
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 
 client = chromadb.Client()
@@ -115,7 +117,7 @@ def prepare_prompt(context, question):
     return prompt_template.format(context=context, question=question)
 
 def generate_response_with_cohere(prompt):
-    cohere_api_key = "NT8pr40WrXGzLJcfPM1JEaWScqEtSG5BLX82GB1E"
+    cohere_api_key = os.getenv("COHERE_API_KEY")
     llm = cohere.Client(api_key=cohere_api_key)
     response = llm.generate(
         model="command-xlarge",
