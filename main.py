@@ -1,7 +1,9 @@
+
 import os
 import uuid 
 import streamlit as st 
 from PyPDF2 import PdfReader 
+from docx import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter 
 from sentence_transformers import SentenceTransformer 
 import chromadb 
